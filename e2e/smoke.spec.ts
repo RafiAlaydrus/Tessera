@@ -15,6 +15,8 @@ test('install screen, tabs, collapsing title, manifest and precache', async ({ p
   // The compact bar fades in once the large title scrolls away.
   const compact = page.locator('div[aria-hidden="true"].fixed')
   await expect(compact).toHaveCSS('opacity', '0')
+  await page.evaluate(() => document.querySelector('main')!.parentElement!.scrollTo(0, 10))
+  await expect(compact).toHaveCSS('opacity', '0') // a nudge does not collapse the title
   await page.evaluate(() => {
     document.querySelector('main')!.append(Object.assign(document.createElement('div'), { style: 'height:2000px' }))
     document.querySelector('main')!.parentElement!.scrollTo(0, 400)
