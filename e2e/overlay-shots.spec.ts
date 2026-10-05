@@ -1,0 +1,17 @@
+import { test } from '@playwright/test'
+test.skip(!process.env.SHOTS, 'run with npm run shots')
+test('overlays', async ({ page }) => {
+  await page.setViewportSize({ width: 393, height: 852 })
+  await page.goto('#/dev')
+  await page.getByRole('button', { name: 'Toast with undo' }).click()
+  await page.waitForTimeout(500)
+  await page.screenshot({ path: 'screenshots/overlay-toast.png' })
+  await page.getByRole('button', { name: 'Open sheet' }).click()
+  await page.waitForTimeout(900)
+  await page.screenshot({ path: 'screenshots/overlay-sheet.png' })
+  await page.keyboard.press('Escape')
+  await page.waitForTimeout(700)
+  await page.getByRole('button', { name: 'Open action sheet' }).click()
+  await page.waitForTimeout(900)
+  await page.screenshot({ path: 'screenshots/overlay-action.png' })
+})

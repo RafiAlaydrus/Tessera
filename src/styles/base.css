@@ -36,3 +36,35 @@ textarea,
 select {
   font-size: 16px;
 }
+
+/* Year grid: cells light up left to right. --i is the week column; --c is the habit color. */
+.yg-cell {
+  fill: var(--tile-off);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: yg-in 280ms both;
+  animation-delay: calc(var(--i) * 6ms);
+}
+.yg-1 { fill: color-mix(in srgb, var(--c) 28%, var(--tile-off)); }
+.yg-2 { fill: color-mix(in srgb, var(--c) 52%, var(--tile-off)); }
+.yg-3 { fill: color-mix(in srgb, var(--c) 76%, var(--tile-off)); }
+.yg-4 { fill: var(--c); }
+.yg-skip { fill: var(--surface-2); }
+
+@keyframes yg-in {
+  from { opacity: 0; transform: scale(0.4); }
+}
+@keyframes yg-fade {
+  from { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .yg-cell { animation-name: yg-fade; }
+}
+html[data-reduced-motion="always"] .yg-cell {
+  animation-name: yg-fade;
+}
+
+/* Long-press ring: one element at a time, so animating the dash offset is fine. */
+@keyframes ring-trace {
+  to { stroke-dashoffset: 0; }
+}

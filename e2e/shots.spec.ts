@@ -19,6 +19,15 @@ for (const scheme of ['dark', 'light'] as const) {
         await page.goto(`#/${s}`)
         await page.screenshot({ path: `screenshots/${scheme}-${name}-${s}.png` })
       }
+      // The components page scrolls inside its container, so capture it in viewport-sized slices.
+      await page.goto('#/dev')
+      await page.waitForTimeout(600)
+      const total = await page.evaluate(() => document.querySelector('main')!.parentElement!.scrollHeight)
+      for (let i = 0, y = 0; y < total; i++, y += viewport.height - 100) {
+        await page.evaluate((top) => document.querySelector('main')!.parentElement!.scrollTo(0, top), y)
+        await page.waitForTimeout(150)
+        await page.screenshot({ path: `screenshots/${scheme}-${name}-dev-${String(i).padStart(2, '0')}.png` })
+      }
       await context.close()
     })
   }

@@ -24,7 +24,7 @@ Vite `base`, manifest `start_url` and `scope` are all `/Tessera/`; change them t
 | `npm test` | Vitest (`src/**/*.test.ts`) |
 | `npm run build` | Typecheck app and service worker, then Vite build into `dist/` |
 | `npm run test:e2e` | Playwright smoke test against a built preview on port 4173 |
-| `npm run shots` | Review screenshots into `screenshots/` (393×852 and 440×956, dark and light) |
+| `npm run shots` | Review screenshots into `screenshots/` (393×852 and 440×956, dark and light), including every component on `#/dev` |
 | `npm run icons` | Regenerate app icons and startup images from `public/mark.svg` (Playwright WebKit) |
 
 ## Layout
@@ -36,7 +36,7 @@ scripts/       devices.ts (iPhone sizes), generate-icons.ts
 e2e/           smoke.spec.ts, shots.spec.ts
 .github/workflows/   deploy.yml (reminders.yml in Phase 12)
 src/
-  main.tsx  App.tsx  router.tsx  sw.ts
+  main.tsx  App.tsx  Root.tsx  router.tsx  sw.ts
   styles/      tokens.css (Tailwind + tokens), base.css
   domain/      pure functions with tests (Phase 2)
   db/          Dexie schema, repos, seed, backup (Phase 2)
@@ -45,6 +45,15 @@ src/
   motion/      springs, celebrate, haptics, sound
   features/    today, habits, tasks, goals, profile, onboarding, ...
 ```
+
+## UI kit (Phase 1)
+
+- Components live in `src/ui`, motion helpers in `src/motion`, transient UI state (toast, sheet depth, reduced motion, bursts) in `src/state/ui.ts`. Open `#/dev` to see all of them; it is lazy-loaded and not linked anywhere.
+- Tile states: off, partial (`progress` 0 to 1 gives the meter height and one of three brightness steps), done (glow, drawn check, `reward` floater), skipped, unscheduled, plus `today` and `future` flags. Long-press uses `useLongPress`; never add `onClick` toggles to tiles.
+- Overlays: `Sheet` (portal, drag the handle, follows `visualViewport`), `ActionSheet`, and `toast(message, { undo })` which shows one toast at a time. `Root` scales the page behind open sheets and hosts toasts and `celebrate()` bursts.
+- Themes: tokens use `light-dark()`; force a theme with `<html data-theme="dark|light">`. Force reduced motion with `<html data-reduced-motion="always">` (set through `useUi.setReducedMotion`).
+- Pass inline closures to `Sheet`/`ActionSheet` freely, but subscribe to the store with selectors (`useUi((s) => s.x)`), never `useUi()` whole.
+- Icons: habit icons come from the curated list in `src/ui/icons.tsx` (keys are what the database stores). Add to that list instead of importing Phosphor icons ad hoc.
 
 ## Data rules
 

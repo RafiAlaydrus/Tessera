@@ -1,55 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  color-scheme: dark;
-  --board: #000000;
-  --surface: #131417;
-  --surface-2: #1c1e22;
-  --tile-off: #202227;
-  --line: rgb(255 255 255 / 0.08);
-  --ink: #f2f3f5;
-  --ink-2: #9ea2aa;
-  --ink-3: #62666e;
-  --xp: #ffc53d;
+  color-scheme: light dark;
+  --board: light-dark(#f3f4f6, #000000);
+  --surface: light-dark(#ffffff, #131417);
+  --surface-2: light-dark(#e9ebef, #1c1e22);
+  --tile-off: light-dark(#dfe2e7, #202227);
+  --line: light-dark(rgb(0 0 0 / 0.08), rgb(255 255 255 / 0.08));
+  --ink: light-dark(#0f1013, #f2f3f5);
+  --ink-2: light-dark(#5b606a, #9ea2aa);
+  --ink-3: light-dark(#9a9fa8, #62666e);
+  --xp: light-dark(#b87f00, #ffc53d);
 
-  --ember: #ff5b3a;
-  --amber: #ffa41f;
-  --lemon: #f2e14c;
-  --lime: #a3e048;
-  --mint: #2fd69a;
-  --cyan: #33c3f0;
-  --cobalt: #4f7dff;
-  --violet: #9d6cff;
-  --magenta: #f05bc8;
-  --rose: #ff7d93;
-  --ice: #d9e4f0;
+  /* LED palette: the light theme darkens each color by 20% toward black. */
+  --ember: light-dark(color-mix(in oklch, #ff5b3a 80%, black), #ff5b3a);
+  --amber: light-dark(color-mix(in oklch, #ffa41f 80%, black), #ffa41f);
+  --lemon: light-dark(color-mix(in oklch, #f2e14c 80%, black), #f2e14c);
+  --lime: light-dark(color-mix(in oklch, #a3e048 80%, black), #a3e048);
+  --mint: light-dark(color-mix(in oklch, #2fd69a 80%, black), #2fd69a);
+  --cyan: light-dark(color-mix(in oklch, #33c3f0 80%, black), #33c3f0);
+  --cobalt: light-dark(color-mix(in oklch, #4f7dff 80%, black), #4f7dff);
+  --violet: light-dark(color-mix(in oklch, #9d6cff 80%, black), #9d6cff);
+  --magenta: light-dark(color-mix(in oklch, #f05bc8 80%, black), #f05bc8);
+  --rose: light-dark(color-mix(in oklch, #ff7d93 80%, black), #ff7d93);
+  --ice: light-dark(#3a3f47, #d9e4f0);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-    --board: #f3f4f6;
-    --surface: #ffffff;
-    --surface-2: #e9ebef;
-    --tile-off: #dfe2e7;
-    --line: rgb(0 0 0 / 0.08);
-    --ink: #0f1013;
-    --ink-2: #5b606a;
-    --ink-3: #9a9fa8;
-    --xp: #b87f00;
-
-    --ember: color-mix(in oklch, #ff5b3a 80%, black);
-    --amber: color-mix(in oklch, #ffa41f 80%, black);
-    --lemon: color-mix(in oklch, #f2e14c 80%, black);
-    --lime: color-mix(in oklch, #a3e048 80%, black);
-    --mint: color-mix(in oklch, #2fd69a 80%, black);
-    --cyan: color-mix(in oklch, #33c3f0 80%, black);
-    --cobalt: color-mix(in oklch, #4f7dff 80%, black);
-    --violet: color-mix(in oklch, #9d6cff 80%, black);
-    --magenta: color-mix(in oklch, #f05bc8 80%, black);
-    --rose: color-mix(in oklch, #ff7d93 80%, black);
-    --ice: #3a3f47;
-  }
+/* Forced themes (Settings in Phase 11, #/dev now) */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 /* Tailwind's default palette, type scale and radii are cleared; only Tessera tokens exist. */

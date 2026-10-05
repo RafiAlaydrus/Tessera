@@ -400,7 +400,7 @@ Done when:
 ## Progress
 
 - [x] Phase 0: Foundation and deploy
-- [ ] Phase 1: Design system and motion kit
+- [x] Phase 1: Design system and motion kit
 - [ ] Phase 2: Data and rules
 - [ ] Phase 3: Habits
 - [ ] Phase 4: Today and first run
