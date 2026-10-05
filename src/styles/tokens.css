@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --board: #000000;
+  --surface: #131417;
+  --surface-2: #1c1e22;
+  --tile-off: #202227;
+  --line: rgb(255 255 255 / 0.08);
+  --ink: #f2f3f5;
+  --ink-2: #9ea2aa;
+  --ink-3: #62666e;
+  --xp: #ffc53d;
+
+  --ember: #ff5b3a;
+  --amber: #ffa41f;
+  --lemon: #f2e14c;
+  --lime: #a3e048;
+  --mint: #2fd69a;
+  --cyan: #33c3f0;
+  --cobalt: #4f7dff;
+  --violet: #9d6cff;
+  --magenta: #f05bc8;
+  --rose: #ff7d93;
+  --ice: #d9e4f0;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --board: #f3f4f6;
+    --surface: #ffffff;
+    --surface-2: #e9ebef;
+    --tile-off: #dfe2e7;
+    --line: rgb(0 0 0 / 0.08);
+    --ink: #0f1013;
+    --ink-2: #5b606a;
+    --ink-3: #9a9fa8;
+    --xp: #b87f00;
+
+    --ember: color-mix(in oklch, #ff5b3a 80%, black);
+    --amber: color-mix(in oklch, #ffa41f 80%, black);
+    --lemon: color-mix(in oklch, #f2e14c 80%, black);
+    --lime: color-mix(in oklch, #a3e048 80%, black);
+    --mint: color-mix(in oklch, #2fd69a 80%, black);
+    --cyan: color-mix(in oklch, #33c3f0 80%, black);
+    --cobalt: color-mix(in oklch, #4f7dff 80%, black);
+    --violet: color-mix(in oklch, #9d6cff 80%, black);
+    --magenta: color-mix(in oklch, #f05bc8 80%, black);
+    --rose: color-mix(in oklch, #ff7d93 80%, black);
+    --ice: #3a3f47;
+  }
+}
+
+/* Tailwind's default palette, type scale and radii are cleared; only Tessera tokens exist. */
+@theme inline {
+  --color-*: initial;
+  --color-board: var(--board);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-tile-off: var(--tile-off);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-xp: var(--xp);
+  --color-ember: var(--ember);
+  --color-amber: var(--amber);
+  --color-lemon: var(--lemon);
+  --color-lime: var(--lime);
+  --color-mint: var(--mint);
+  --color-cyan: var(--cyan);
+  --color-cobalt: var(--cobalt);
+  --color-violet: var(--violet);
+  --color-magenta: var(--magenta);
+  --color-rose: var(--rose);
+  --color-ice: var(--ice);
+
+  --font-sans: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  --font-dot: "Doto", ui-monospace, monospace;
+
+  --text-*: initial;
+  --text-caption: 12px;
+  --text-caption--line-height: 16px;
+  --text-secondary: 14px;
+  --text-secondary--line-height: 20px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-row: 18px;
+  --text-row--line-height: 24px;
+  --text-section: 21px;
+  --text-section--line-height: 28px;
+  --text-title: 28px;
+  --text-title--line-height: 34px;
+
+  --radius-*: initial;
+  --radius-panel: 22px;
+  --radius-sheet: 28px;
+  --radius-input: 14px;
+}
